@@ -1,4 +1,5 @@
 import { useState, useEffect, useRef } from "react";
+import { useNavigate } from "react-router-dom";
 import Icon from "@/components/ui/icon";
 
 const HERO_IMAGE = "https://cdn.poehali.dev/projects/6cfdd47c-fb2c-49ee-8522-cad6c467cd1d/files/e3f3e7fe-229a-4aa1-b601-82fc5b6dfae9.jpg";
@@ -316,6 +317,7 @@ function AccuracyBar({ sport, value, inView }: { sport: string; value: number; i
 
 export default function Index() {
   const [menuOpen, setMenuOpen] = useState(false);
+  const navigate = useNavigate();
   const { ref: accuracyRef, inView: accuracyInView } = useInView();
 
   const scrollTo = (id: string) => {
@@ -593,7 +595,7 @@ export default function Index() {
                 <span className="badge-live-dot" />
                 4 прогноза активно
               </div>
-              <button className="text-win-red font-oswald text-sm hover:underline">Все прогнозы →</button>
+              <button onClick={() => navigate("/history")} className="text-win-blue font-oswald text-sm hover:underline flex items-center gap-1">Все прогнозы <Icon name="ArrowRight" size={14} /></button>
             </div>
           </div>
 
@@ -604,8 +606,12 @@ export default function Index() {
           </div>
 
           <div className="mt-8 text-center">
-            <button className="border border-win-blue/40 text-win-blue font-oswald font-bold px-10 py-3 rounded-full hover:bg-win-blue/10 transition-all duration-200">
-              ПОСМОТРЕТЬ ВСЕ ПРОГНОЗЫ
+            <button
+              onClick={() => navigate("/history")}
+              className="border border-win-blue/40 text-win-blue font-oswald font-bold px-10 py-3 rounded-full hover:bg-win-blue/10 transition-all duration-200 flex items-center gap-2 mx-auto"
+            >
+              <Icon name="BarChart2" size={18} />
+              ПОЛНАЯ ИСТОРИЯ ПРОГНОЗОВ
             </button>
           </div>
         </div>

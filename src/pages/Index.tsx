@@ -327,15 +327,47 @@ export default function Index() {
     <div className="min-h-screen bg-[#07101f] text-white overflow-x-hidden">
 
       {/* TICKER */}
-      <div className="bg-win-blue/90 py-1.5 overflow-hidden" style={{ background: "linear-gradient(90deg, #0d5fbf, #1a8fff, #f5a623, #1a8fff, #0d5fbf)" }}>
-        <div className="flex animate-ticker">
-          {[...Array(2)].map((_, i) => (
-            <div key={i} className="flex gap-8 mr-8 text-white text-xs font-roboto font-medium">
-              {["⚽ Реал Мадрид WIN +18K ₽", "🏀 Lakers тотал WIN +7.2K ₽", "🎾 Джокович WIN +31K ₽", "🏒 ЦСКА обе забьют WIN +12.6K ₽", "⚽ ПСЖ WIN +9.8K ₽", "🏀 Boston Celtics WIN +5.3K ₽"].map((t) => (
-                <span key={t} className="flex-shrink-0">★ {t}</span>
+      <div className="overflow-hidden border-b border-blue-900/40" style={{ background: "#060f1c" }}>
+        <div className="flex items-stretch">
+          {/* Лейбл */}
+          <div className="flex-shrink-0 flex items-center gap-2 px-4 z-10 border-r border-blue-900/40" style={{ background: "linear-gradient(135deg, #0d3d87, #1a6fd4)" }}>
+            <div className="w-1.5 h-1.5 rounded-full bg-white animate-pulse" />
+            <span className="font-oswald font-bold text-white text-xs tracking-widest uppercase whitespace-nowrap">Вчера</span>
+          </div>
+          {/* Скролл */}
+          <div className="overflow-hidden flex-1 py-2">
+            <div className="flex animate-ticker gap-0">
+              {[...Array(2)].map((_, i) => (
+                <div key={i} className="flex items-center gap-0 flex-shrink-0">
+                  {[
+                    { emoji: "⚽", event: "Реал Мадрид — Барселона", score: "2:1", result: "WIN", coef: "1.85", color: "#4ade80" },
+                    { emoji: "🏀", event: "Boston Celtics — Miami Heat", score: "118:104", result: "WIN", coef: "1.72", color: "#4ade80" },
+                    { emoji: "🎾", event: "Синнер — Алькарас", score: "6:4, 7:5", result: "WIN", coef: "2.10", color: "#4ade80" },
+                    { emoji: "🏒", event: "ЦСКА — Динамо Мск", score: "3:2 ОТ", result: "WIN", coef: "1.95", color: "#4ade80" },
+                    { emoji: "⚽", event: "Манчестер Сити — Арсенал", score: "1:1", result: "ВОЗВРАТ", coef: "—", color: "#f5a623" },
+                    { emoji: "🏈", event: "Kansas City — Buffalo", score: "27:21", result: "WIN", coef: "1.90", color: "#4ade80" },
+                    { emoji: "⚽", event: "Бавария — Боруссия Д", score: "3:0", result: "WIN", coef: "1.65", color: "#4ade80" },
+                    { emoji: "🥊", event: "Усик — Дубуа", score: "KO-5", result: "WIN", coef: "2.30", color: "#4ade80" },
+                  ].map((item, j) => (
+                    <div key={j} className="flex items-center gap-3 px-5 border-r border-white/6 flex-shrink-0">
+                      <span className="text-sm">{item.emoji}</span>
+                      <span className="text-white/60 text-xs font-roboto whitespace-nowrap">{item.event}</span>
+                      <span className="text-white font-oswald font-bold text-sm whitespace-nowrap">{item.score}</span>
+                      <span
+                        className="text-xs font-oswald font-bold px-2 py-0.5 rounded whitespace-nowrap"
+                        style={{ color: item.color, background: `${item.color}18`, border: `1px solid ${item.color}33` }}
+                      >
+                        {item.result}
+                      </span>
+                      {item.coef !== "—" && (
+                        <span className="text-win-orange font-oswald font-bold text-xs whitespace-nowrap">×{item.coef}</span>
+                      )}
+                    </div>
+                  ))}
+                </div>
               ))}
             </div>
-          ))}
+          </div>
         </div>
       </div>
 

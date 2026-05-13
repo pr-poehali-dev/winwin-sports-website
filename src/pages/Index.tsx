@@ -2,6 +2,7 @@ import { useState, useEffect, useRef } from "react";
 import Icon from "@/components/ui/icon";
 
 const HERO_IMAGE = "https://cdn.poehali.dev/projects/6cfdd47c-fb2c-49ee-8522-cad6c467cd1d/files/e3f3e7fe-229a-4aa1-b601-82fc5b6dfae9.jpg";
+const LOGO_IMAGE = "https://cdn.poehali.dev/projects/6cfdd47c-fb2c-49ee-8522-cad6c467cd1d/bucket/b68e4e93-4d79-41c7-8920-fae124ca8fc9.jpg";
 
 const NAV_LINKS = ["Преимущества", "Прогнозы", "Тарифы", "Сообщество"];
 
@@ -232,13 +233,13 @@ function PickCard({ pick }: { pick: typeof PICKS[0] }) {
           </div>
           <div className="text-right">
             <div className="text-win-silver text-xs mb-0.5 font-roboto">Коэффициент</div>
-            <div className="font-oswald text-2xl font-bold text-win-red">{pick.odds}</div>
+            <div className="font-oswald text-2xl font-bold text-win-orange">{pick.odds}</div>
           </div>
         </div>
 
         <div className="flex items-center justify-between text-sm">
           <span className="text-win-silver font-roboto">{pick.confidence}% точность</span>
-          <button className="gradient-red text-white text-xs font-oswald font-bold px-4 py-1.5 rounded-full hover:opacity-90 transition-opacity">
+          <button className="gradient-blue text-white text-xs font-oswald font-bold px-4 py-1.5 rounded-full hover:opacity-90 transition-opacity">
             ОТКРЫТЬ
           </button>
         </div>
@@ -323,10 +324,10 @@ export default function Index() {
   };
 
   return (
-    <div className="min-h-screen bg-[#0a0a0a] text-white overflow-x-hidden">
+    <div className="min-h-screen bg-[#07101f] text-white overflow-x-hidden">
 
       {/* TICKER */}
-      <div className="bg-win-red/95 py-1.5 overflow-hidden">
+      <div className="bg-win-blue/90 py-1.5 overflow-hidden" style={{ background: "linear-gradient(90deg, #0d5fbf, #1a8fff, #f5a623, #1a8fff, #0d5fbf)" }}>
         <div className="flex animate-ticker">
           {[...Array(2)].map((_, i) => (
             <div key={i} className="flex gap-8 mr-8 text-white text-xs font-roboto font-medium">
@@ -339,14 +340,16 @@ export default function Index() {
       </div>
 
       {/* NAVBAR */}
-      <nav className="sticky top-0 z-50 bg-[#0a0a0a]/95 backdrop-blur-md border-b border-white/6">
+      <nav className="sticky top-0 z-50 bg-[#07101f]/96 backdrop-blur-md border-b border-blue-900/30">
         <div className="max-w-7xl mx-auto px-4 md:px-8 h-16 flex items-center justify-between">
           <div className="flex items-center gap-2">
-            <div className="w-8 h-8 gradient-red rounded-lg flex items-center justify-center pulse-red">
-              <Icon name="Trophy" size={16} className="text-white" />
-            </div>
+            <img
+              src={LOGO_IMAGE}
+              alt="WinWinSports"
+              className="h-10 w-10 rounded-xl object-cover"
+            />
             <span className="font-oswald font-bold text-xl tracking-wide">
-              WIN<span className="text-win-red">WIN</span>SPORTS
+              <span className="text-win-blue">Win</span><span className="text-win-orange">Win</span><span className="text-white">Sports</span>
             </span>
           </div>
 
@@ -368,7 +371,7 @@ export default function Index() {
             </button>
             <button
               onClick={() => scrollTo("plans")}
-              className="gradient-red text-white text-sm font-oswald font-bold px-5 py-2 rounded-full hover:opacity-90 transition-opacity"
+              className="gradient-blue text-white text-sm font-oswald font-bold px-5 py-2 rounded-full hover:opacity-90 transition-opacity"
             >
               ПОПРОБОВАТЬ
             </button>
@@ -399,8 +402,8 @@ export default function Index() {
           className="absolute inset-0 bg-cover bg-center"
           style={{ backgroundImage: `url(${HERO_IMAGE})` }}
         />
-        <div className="absolute inset-0 bg-gradient-to-b from-black/75 via-black/60 to-[#0a0a0a]" />
-        <div className="absolute inset-0 bg-gradient-to-r from-black/40 via-transparent to-black/40" />
+        <div className="absolute inset-0 bg-gradient-to-b from-[#07101f]/80 via-[#07101f]/60 to-[#07101f]" />
+        <div className="absolute inset-0 bg-gradient-to-r from-[#0d5fbf]/30 via-transparent to-[#0d5fbf]/20" />
 
         <div className="absolute inset-0 overflow-hidden pointer-events-none">
           <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[800px] h-[800px] opacity-10">
@@ -410,19 +413,31 @@ export default function Index() {
         </div>
 
         <div className="relative z-10 max-w-5xl mx-auto px-4 text-center py-24">
-          <div className="badge-live mb-6 inline-flex animate-float-up" style={{ animationFillMode: "forwards" }}>
+          <div
+            className="animate-float-up opacity-0 mb-6"
+            style={{ animationFillMode: "forwards" }}
+          >
+            <img
+              src={LOGO_IMAGE}
+              alt="WinWinSports Logo"
+              className="w-28 h-28 md:w-36 md:h-36 rounded-2xl object-cover mx-auto shadow-2xl"
+              style={{ boxShadow: "0 0 40px rgba(26,143,255,0.4), 0 0 80px rgba(245,166,35,0.2)" }}
+            />
+          </div>
+
+          <div className="badge-live mb-6 inline-flex animate-float-up delay-100" style={{ animationFillMode: "forwards" }}>
             <span className="badge-live-dot" />
             84% точность прогнозов • Проверено независимо
           </div>
 
           <div className="animate-float-up opacity-0 delay-200" style={{ animationFillMode: "forwards" }}>
             <h1 className="font-oswald font-bold leading-none text-5xl sm:text-6xl md:text-8xl tracking-tight mb-2">
-              <span className="text-white">WIN</span>
-              <span className="text-win-red glow-red-text"> TOGETHER.</span>
+              <span className="text-win-blue glow-blue-text">WIN</span>
+              <span className="text-white"> TOGETHER.</span>
             </h1>
             <h1 className="font-oswald font-bold leading-none text-5xl sm:text-6xl md:text-8xl tracking-tight mb-6">
-              <span className="text-win-red glow-red-text">WIN</span>
-              <span className="text-white"> ALWAYS.</span>
+              <span className="text-white">WIN</span>
+              <span className="text-win-orange glow-orange-text"> ALWAYS.</span>
             </h1>
           </div>
 
@@ -440,14 +455,16 @@ export default function Index() {
           >
             <button
               onClick={() => scrollTo("picks")}
-              className="gradient-red glow-red text-white font-oswald font-bold text-lg px-10 py-4 rounded-full hover:opacity-90 transition-all duration-200 hover:scale-105 flex items-center gap-2"
+              className="text-white font-oswald font-bold text-lg px-10 py-4 rounded-full hover:opacity-90 transition-all duration-200 hover:scale-105 flex items-center gap-2"
+              style={{ background: "linear-gradient(135deg, #f5a623, #e08800)", boxShadow: "0 0 24px rgba(245,166,35,0.4)" }}
             >
               <Icon name="Flame" size={20} />
               ПРОГНОЗЫ НА СЕГОДНЯ
             </button>
             <button
               onClick={() => scrollTo("plans")}
-              className="border border-white/20 text-white font-oswald font-bold text-lg px-10 py-4 rounded-full hover:border-white/40 transition-all duration-200 hover:bg-white/5"
+              className="text-white font-oswald font-bold text-lg px-10 py-4 rounded-full transition-all duration-200 hover:scale-105"
+              style={{ background: "linear-gradient(135deg, #1a8fff, #0d5fbf)", boxShadow: "0 0 24px rgba(26,143,255,0.3)" }}
             >
               ВЫБРАТЬ ПЛАН
             </button>
@@ -555,7 +572,7 @@ export default function Index() {
           </div>
 
           <div className="mt-8 text-center">
-            <button className="border border-win-red/40 text-win-red font-oswald font-bold px-10 py-3 rounded-full hover:bg-win-red/10 transition-all duration-200">
+            <button className="border border-win-blue/40 text-win-blue font-oswald font-bold px-10 py-3 rounded-full hover:bg-win-blue/10 transition-all duration-200">
               ПОСМОТРЕТЬ ВСЕ ПРОГНОЗЫ
             </button>
           </div>
@@ -616,7 +633,7 @@ export default function Index() {
                 className="card-shine bg-win-card border border-white/8 rounded-2xl p-6 hover:border-green-900/40 transition-all duration-300 hover:-translate-y-1"
               >
                 <div className="flex items-center gap-3 mb-4">
-                  <div className="w-11 h-11 gradient-red rounded-full flex items-center justify-center font-oswald font-bold text-white text-lg">
+                  <div className="w-11 h-11 gradient-blue rounded-full flex items-center justify-center font-oswald font-bold text-white text-lg">
                     {f.avatar}
                   </div>
                   <div>
@@ -641,7 +658,7 @@ export default function Index() {
           </div>
 
           <div className="relative overflow-hidden rounded-2xl">
-            <div className="gradient-red p-10 md:p-14 text-center">
+            <div className="p-10 md:p-14 text-center" style={{ background: "linear-gradient(135deg, #0d3d87 0%, #1a6fd4 50%, #c47a00 100%)" }}>
               <div className="absolute inset-0 opacity-10 pointer-events-none select-none">
                 <div className="absolute top-4 left-4 text-8xl">🏆</div>
                 <div className="absolute bottom-4 right-4 text-8xl">🎯</div>
@@ -655,7 +672,8 @@ export default function Index() {
                 </p>
                 <button
                   onClick={() => scrollTo("plans")}
-                  className="bg-white text-win-red font-oswald font-bold text-lg px-12 py-4 rounded-full hover:scale-105 transition-all duration-200 shadow-2xl"
+                  className="bg-white font-oswald font-bold text-lg px-12 py-4 rounded-full hover:scale-105 transition-all duration-200 shadow-2xl"
+                  style={{ color: "#0d3d87" }}
                 >
                   НАЧАТЬ СЕЙЧАС — БЕСПЛАТНО
                 </button>
@@ -666,14 +684,12 @@ export default function Index() {
       </section>
 
       {/* FOOTER */}
-      <footer className="border-t border-white/8 py-12 max-w-7xl mx-auto px-4 md:px-8">
+      <footer className="border-t border-blue-900/30 py-12 max-w-7xl mx-auto px-4 md:px-8">
         <div className="flex flex-col md:flex-row items-center justify-between gap-6">
           <div className="flex items-center gap-2">
-            <div className="w-7 h-7 gradient-red rounded-lg flex items-center justify-center">
-              <Icon name="Trophy" size={14} className="text-white" />
-            </div>
+            <img src={LOGO_IMAGE} alt="WinWinSports" className="h-8 w-8 rounded-lg object-cover" />
             <span className="font-oswald font-bold text-lg">
-              WIN<span className="text-win-red">WIN</span>SPORTS
+              <span className="text-win-blue">Win</span><span className="text-win-orange">Win</span><span className="text-white">Sports</span>
             </span>
           </div>
           <div className="flex gap-6 text-win-silver text-sm font-roboto">
